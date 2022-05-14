@@ -23,7 +23,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Next Launch🔥</h1>
+      <h1 className="title">Next Launch🔥</h1>
       {nextLaunch ?
         <NextLaunch
           nextLaunchDate={nextLaunchDate}

@@ -8,8 +8,11 @@ function NextLaunch({ nextLaunchDate, launchPatch }) {
   return (
     <div className="App">
       <img src={launchPatch} alt={"logo"}/>
-      <p><b>{nextLaunchDate}</b></p>
-      <Countdown date={nextLaunchDate} />
+      <p>{nextLaunchDate}</p>
+      <b><Countdown
+        date={nextLaunchDate}
+        className="Countdown"
+      /></b>
     </div>
   );
 }
