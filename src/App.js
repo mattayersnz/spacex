@@ -1,23 +1,37 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
+import NextLaunch from './NextLaunch';
+import axios from 'axios';
 import './App.css';
 
+
 function App() {
+
+  const [nextLaunch, setNextLaunch] = useState(null)
+  const [nextLaunchDate, setNextLaunchDate] = useState(null)
+  const [launchPatch, setLaunchPatch] = useState(null)
+
+  useEffect(() => {
+    axios.get('https://api.spacexdata.com/v5/launches/next').then((response) => {
+      setNextLaunch(response.data)
+      const nextDate = new Date(response.data.date_utc);
+      setNextLaunchDate(`${nextDate}`)
+      setLaunchPatch(response.data.links.patch.small)
+    })
+  }, [])
+
+  console.log('nextLaunch', nextLaunch)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Next Launch🔥</h1>
+      {nextLaunch ?
+        <NextLaunch
+          nextLaunchDate={nextLaunchDate}
+          launchPatch={launchPatch}
+        />
+        :
+        <p>Loading...</p>
+      }
     </div>
   );
 }
