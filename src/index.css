@@ -6,11 +6,6 @@ body {
   font-weight: 200;
 }
 
-input {
-  -webkit-appearance: none;
-  border-radius: 0;
-}
-
 .title {
   padding-top: 14px;
   font-weight: 800;
